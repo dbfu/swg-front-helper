@@ -1,0 +1,898 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "My Project",
+    "description": "This is a swagger-ui for midwayjs project",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "auth",
+      "description": "auth"
+    },
+    {
+      "name": "code-flow",
+      "description": "code-flow"
+    },
+    {
+      "name": "data-source",
+      "description": "data-source"
+    },
+    {
+      "name": "file",
+      "description": "file"
+    },
+    {
+      "name": "menu",
+      "description": "菜单管理"
+    },
+    {
+      "name": "role",
+      "description": "角色管理"
+    },
+    {
+      "name": "table",
+      "description": "table"
+    },
+    {
+      "name": "user",
+      "description": "用户管理"
+    }
+  ],
+  "servers": [
+    {
+      "url": "/api"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "LoginDTO": {
+        "type": "object",
+        "properties": {}
+      },
+      "RefreshTokenDTO": {
+        "type": "object",
+        "properties": {}
+      },
+      "DataSourceDTO": {
+        "type": "object",
+        "properties": {}
+      },
+      "FileDTO": {
+        "type": "object",
+        "properties": {}
+      },
+      "MenuDTO": {
+        "type": "object",
+        "properties": {}
+      },
+      "InterfaceDTO": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "example": "/user",
+            "description": "路由地址",
+            "nullable": false
+          },
+          "method": {
+            "type": "string",
+            "example": "/get",
+            "description": "请求方式",
+            "nullable": false
+          }
+        }
+      },
+      "MenuInterfaceDTO": {
+        "type": "object",
+        "properties": {
+          "menu_id": {
+            "type": "string",
+            "description": "菜单id",
+            "example": ""
+          },
+          "interface_infos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InterfaceDTO"
+            },
+            "description": "接口信息",
+            "example": []
+          }
+        }
+      },
+      "RoleDTO": {
+        "type": "object",
+        "properties": {}
+      },
+      "RolePageDTO": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number",
+            "description": "page",
+            "example": "0"
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "pageSize",
+            "example": "0"
+          },
+          "code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "RoleMenuDTO": {
+        "type": "object",
+        "properties": {}
+      },
+      "RoleInterfaceDTO": {
+        "type": "object",
+        "properties": {}
+      },
+      "UserDTO": {
+        "type": "object",
+        "properties": {}
+      },
+      "UserPageDTO": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number",
+            "description": "page",
+            "example": "0"
+          },
+          "pageSize": {
+            "type": "number",
+            "description": "pageSize",
+            "example": "0"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "description": "登录",
+        "tags": [
+          "auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "common:all_value_key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/loginout": {
+      "post": {
+        "description": "退出登录",
+        "tags": [
+          "auth"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/token/refresh": {
+      "post": {
+        "description": "刷新token",
+        "tags": [
+          "auth"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/code-flow/run": {
+      "post": {
+        "tags": [
+          "code-flow"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "common:all_value_key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/data-source/": {
+      "post": {
+        "tags": [
+          "data-source"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "common:all_value_key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataSourceDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/data-source/page": {
+      "get": {
+        "tags": [
+          "data-source"
+        ],
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/file/upload": {
+      "post": {
+        "tags": [
+          "file"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/file/": {
+      "put": {
+        "tags": [
+          "file"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "common:all_value_key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FileDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/file/{id}/{code}": {
+      "delete": {
+        "tags": [
+          "file"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MenuDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/file/{id}": {
+      "get": {
+        "tags": [
+          "file"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/file/page": {
+      "get": {
+        "tags": [
+          "file"
+        ],
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/file/list": {
+      "get": {
+        "tags": [
+          "file"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/menu/": {
+      "post": {
+        "description": "创建一个菜单",
+        "tags": [
+          "menu"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "common:all_value_key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenuDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/menu/page": {
+      "get": {
+        "description": "分页查询菜单",
+        "tags": [
+          "menu"
+        ],
+        "parameters": [
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenuDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/menu/list": {
+      "get": {
+        "description": "查询全量菜单",
+        "tags": [
+          "menu"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/menu/children": {
+      "get": {
+        "description": "根据上级菜单查询子级菜单",
+        "tags": [
+          "menu"
+        ],
+        "parameters": [
+          {
+            "name": "parentId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/menu/alloc/interface/list": {
+      "get": {
+        "description": "根据菜单查询已分配接口",
+        "tags": [
+          "menu"
+        ],
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/menu/alloc/interface": {
+      "post": {
+        "description": "菜单分配接口",
+        "tags": [
+          "menu"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenuInterfaceDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/role/": {
+      "post": {
+        "description": "创建角色",
+        "tags": [
+          "role"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "common:all_value_key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/role/page": {
+      "get": {
+        "description": "分页获取角色列表",
+        "tags": [
+          "role"
+        ],
+        "parameters": [
+          {
+            "name": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/RolePageDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/role/list": {
+      "get": {
+        "description": "获取角色列表",
+        "tags": [
+          "role"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/role/interface/list": {
+      "get": {
+        "description": "获取接口列表",
+        "tags": [
+          "role"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/role/alloc/menu": {
+      "post": {
+        "description": "角色分配菜单",
+        "tags": [
+          "role"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "common:all_value_key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleMenuDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/role/alloc/interface": {
+      "post": {
+        "description": "角色分配接口",
+        "tags": [
+          "role"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "common:all_value_key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleInterfaceDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/role/menu/list": {
+      "get": {
+        "description": "根据角色id获取菜单列表",
+        "tags": [
+          "role"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/": {
+      "post": {
+        "description": "创建一个用户",
+        "tags": [
+          "user"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "common:all_value_key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "description": "修改用户信息",
+        "tags": [
+          "user"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "common:all_value_key",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDTO"
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "description": "通过id获取用户信息",
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/current": {
+      "get": {
+        "description": "获取当前登录用户信息",
+        "tags": [
+          "user"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/list": {
+      "get": {
+        "description": "获取全量用户列表",
+        "tags": [
+          "user"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/menu/list": {
+      "get": {
+        "description": "根据当前登录用户获取菜单列表",
+        "tags": [
+          "user"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/page": {
+      "get": {
+        "description": "分页查询用户列表",
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "name": "",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/UserPageDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
