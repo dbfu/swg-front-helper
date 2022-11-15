@@ -3,7 +3,7 @@
 const { join } = require('path');
 const request = require('request');
 const ora = require('ora');
- 
+
 const { ModelGenerate } = require('./model-geneate');
 const { ServiceGenerate } = require('./service-generate');
 
@@ -22,7 +22,8 @@ const spinner = ora('生成文件中...').start();
 request.get('http://127.0.0.1:7001/swagger-ui/index.json', (error, _, body) => {
 
   if (error) {
-    console.log('获取数据失败');
+    spinner.stop();
+    ora().fail('获取数据失败')
     return;
   }
 
@@ -47,6 +48,7 @@ request.get('http://127.0.0.1:7001/swagger-ui/index.json', (error, _, body) => {
   modelGenerate.generateIndexFile();
 
   spinner.stop();
+  spinner.info('文件生成成功!');
 });
 
 

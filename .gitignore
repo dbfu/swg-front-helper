@@ -37,5 +37,6 @@ router.config.js
 /src/common/router.js
 .temp
 .cache
+/src
 
 .cache/

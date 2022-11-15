@@ -1,6 +1,6 @@
 {
   "name": "swg-front-helper",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,8 @@
     "@babel/core": "^7.19.6",
     "@babel/generator": "^7.19.6",
     "@babel/types": "^7.19.4",
-    "ora": "^6.1.2",
+    "ora": "^5.4.0",
+    "prettier": "^2.7.1",
     "request": "^2.88.2"
   },
   "bin": {

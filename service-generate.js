@@ -1,4 +1,4 @@
-const { join, relative } = require('path');
+const { relative } = require('path');
 const fs = require('fs');
 const babel = require('@babel/core');
 const t = require('@babel/types');
@@ -277,10 +277,6 @@ class ServiceFunction {
     return [this.desc ? `/**
 * ${this.desc}
 */` : null, generate(ast).code].filter(o => o).join('\n');
-  }
-
-  generateFile(code) {
-    fs.writeFile(path.join(__dirname, `service/${this.name}.ts`), code);
   }
 
   getUseModels() {

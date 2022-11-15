@@ -2,9 +2,14 @@ const { join } = require('path');
 const fs = require('fs');
 const babel = require('@babel/core');
 const t = require('@babel/types');
-const generate = require('@babel/generator').default;
+const generateCode = require('@babel/generator').default;
+const prettier = require("prettier");
 const { getTypeBySchema } = require('./utils');
 
+
+function generate(ast) {
+  return { code: prettier.format(generateCode(ast).code, { semi: false, parser: "babel" }) }
+}
 
 class ModelGenerate {
   schemas = {};
@@ -58,6 +63,7 @@ class ModelGenerate {
       this.generate(item.models);
     })
   }
+
 
   generateModel(modelName, properties, models, filePath) {
     const ast = t.exportNamedDeclaration(
@@ -113,10 +119,17 @@ class ModelGenerate {
           t.identifier(item.type)
         )
       }
-      return t.objectTypeProperty(
+
+
+      let type = t.objectTypeProperty(
         t.identifier(k),
         propType
       );
+
+      type = t.addComment(type, 'leading', `*\n   * ${properties[k]?.description || k}\n   `)
+
+
+      return type;
     })
   }
 
@@ -145,7 +158,7 @@ class ModelGenerate {
     let body = [];
     if (fs.existsSync(join(`${this.filePath}`, 'index.ts'))) {
       const indexFileContext = fs.readFileSync(join(`${this.filePath}`, 'index.ts')).toString();
-    
+
       body = babel.parse(
         indexFileContext,
         {
