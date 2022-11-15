@@ -1,12 +1,13 @@
 {
   "name": "swg-front-helper",
-  "version": "1.0.6",
-  "description": "",
+  "version": "1.1.0",
+  "description": "根据swagger快速生成前端service接口和模型",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": "https://github.com/dbfu/swg-front-helper.git",
+  "author": "dbfu",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.19.6",
